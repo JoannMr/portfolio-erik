@@ -1,29 +1,27 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { DM_Sans } from "next/font/google";
+import { Geist_Mono, Instrument_Sans, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 import LoadingScreen from "@/components/layout/LoadingScreen";
 import { LoadingProvider } from "@/contexts/LoadingContext";
 import { Providers } from "./providers";
-import "@fontsource/dm-sans";
 import { Analytics } from '@vercel/analytics/next';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-instrument-sans",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-space-grotesk",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-});
-
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-dm-sans",
 });
 
 export const metadata: Metadata = {
@@ -48,13 +46,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${dmSans.variable} font-dm-sans antialiased`}>
+      <body className={`${instrumentSans.variable} ${spaceGrotesk.variable} ${geistMono.variable} font-body antialiased`}>
         <LoadingProvider>
           <LoadingScreen />
           <Providers>
             <Navbar />
             {children}
-            <Footer />
           </Providers>
         </LoadingProvider>
         <Analytics />

@@ -106,8 +106,7 @@ export default function Navbar() {
           >
             <Link 
               href="/" 
-              className={`text-lg font-medium tracking-tight font-dm-sans ${textColor}`}
-              style={{ letterSpacing: '-0.02em' }}
+              className={`font-heading text-lg font-semibold tracking-normal ${textColor}`}
             >
               Erik Majada
             </Link>
@@ -133,8 +132,7 @@ export default function Navbar() {
               <motion.button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`relative font-dm-sans font-medium text-[15px] ${textColor} transition-colors duration-300 group overflow-hidden`}
-                style={{ letterSpacing: '-0.01em' }}
+                className={`relative font-medium text-[15px] leading-none tracking-normal ${textColor} transition-colors duration-300 group overflow-hidden`}
                 whileHover="hover"
               >
                 <motion.span
@@ -182,7 +180,7 @@ export default function Navbar() {
           >
             <div className="relative">
               {/* Texto "Menu" elegante */}
-              <span className={`text-xs font-medium ${menuTextColor} tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute -bottom-8 left-1/2 transform -translate-x-1/2 whitespace-nowrap`}>
+              <span className={`text-xs font-medium ${menuTextColor} tracking-[0.08em] opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute -bottom-8 left-1/2 transform -translate-x-1/2 whitespace-nowrap`}>
                 Menu
               </span>
               
@@ -250,7 +248,7 @@ export default function Navbar() {
                     transition={{ delay: 0.3 }}
                     className="mb-12"
                   >
-                    <h3 className="text-sm font-medium text-white/50 tracking-[0.2em] uppercase">
+                    <h3 className="text-[11px] font-medium text-white/50 tracking-[0.16em] uppercase">
                       Navigation
                     </h3>
                   </motion.div>
@@ -273,7 +271,7 @@ export default function Navbar() {
                         className="group block text-left w-full"
                       >
                         <div className="flex items-center justify-between py-2 border-b border-white/10 group-hover:border-white/30 transition-colors duration-300">
-                          <span className="text-3xl md:text-4xl font-light text-white group-hover:text-white/80 transition-colors duration-300">
+                          <span className="font-heading text-3xl font-medium leading-tight text-white group-hover:text-white/80 transition-colors duration-300 md:text-4xl">
                             {item.name}
                           </span>
                           <span className="text-white/40 transform transition-transform duration-300 group-hover:translate-x-2">
@@ -292,12 +290,12 @@ export default function Navbar() {
                     className="mt-16 pt-8 border-t border-white/10"
                   >
                     <div className="mb-8">
-                      <h4 className="text-sm font-medium text-white/50 tracking-[0.2em] uppercase mb-4">
+                      <h4 className="mb-4 text-[11px] font-medium text-white/50 tracking-[0.16em] uppercase">
                         Contact
                       </h4>
                       <button 
                         onClick={handleGmailCompose}
-                        className="group text-white/80 hover:text-white transition-all duration-300 text-left cursor-pointer hover:scale-105 relative"
+                        className="group relative cursor-pointer text-left text-white/80 transition-all duration-300 hover:scale-[1.02] hover:text-white"
                       >
                         <span className="relative z-10">erik.majada@gmail.com</span>
                         
@@ -315,7 +313,7 @@ export default function Navbar() {
                     </div>
 
                     <div>
-                      <h4 className="text-sm font-medium text-white/50 tracking-[0.2em] uppercase mb-4">
+                      <h4 className="mb-4 text-[11px] font-medium text-white/50 tracking-[0.16em] uppercase">
                         Socials
                       </h4>
                       <div className="space-y-2">
@@ -340,7 +338,7 @@ export default function Navbar() {
                   transition={{ delay: 1 }}
                   className="p-12 border-t border-white/10"
                 >
-                  <p className="text-xs text-white/40 tracking-wider">
+                  <p className="text-xs leading-relaxed text-white/40 tracking-[0.08em]">
                     © 2025 Erik Majada · Logistics Operations Leader
                   </p>
                 </motion.div>

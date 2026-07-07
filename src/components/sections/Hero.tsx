@@ -8,89 +8,91 @@ import { useLoading } from '@/contexts/LoadingContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const tickerItems = [
+  'Logistics Operations',
+  'Team Leadership',
+  'DHL eCommerce Spain',
+  'Warehouse Management',
+  'KPI Monitoring',
+  'Operational Excellence',
+  'Supply Chain',
+  'Barcelona',
+];
+
 export default function Hero() {
   const { isLoadingComplete } = useLoading();
-  const heroRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const locationRef = useRef<HTMLParagraphElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const introRef = useRef<HTMLParagraphElement>(null);
-  const buttonsRef = useRef<HTMLDivElement>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const heroRef    = useRef<HTMLDivElement>(null);
+  const photoRef   = useRef<HTMLDivElement>(null);
+  const erikRef    = useRef<HTMLSpanElement>(null);
+  const majadaRef  = useRef<HTMLSpanElement>(null);
+  const roleRef    = useRef<HTMLParagraphElement>(null);
+  const btnsRef    = useRef<HTMLDivElement>(null);
+  const scrollRef  = useRef<HTMLDivElement>(null);
+  const tickerRef  = useRef<HTMLDivElement>(null);
 
   const scrollToContact = () => {
-    const contactElement = document.getElementById('contact');
-    if (contactElement) {
-      contactElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   useEffect(() => {
-    if (!contentRef.current || !titleRef.current || !imageRef.current || !heroRef.current) return;
     if (!isLoadingComplete) return;
 
-    let masterTl: gsap.core.Timeline | null = null;
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    const isDesktop = window.innerWidth >= 768;
 
-    const startAnimations = () => {
-      if (!titleRef.current || !imageRef.current || !locationRef.current ||
-          !subtitleRef.current || !introRef.current || !buttonsRef.current ||
-          !scrollRef.current || !heroRef.current) return;
+    tl
+      .fromTo(photoRef.current,
+        { y: 40, opacity: 0, scale: 1.06 },
+        { y: 0, opacity: 1, scale: 1, duration: 1.6, ease: 'power2.out' }
+      )
+      .fromTo(erikRef.current,
+        { x: -60, opacity: 0 },
+        { x: 0, y: isDesktop ? 68 : 0, opacity: 1, duration: 1.1, ease: 'power4.out' },
+        '-=1.3'
+      )
+      .fromTo(majadaRef.current,
+        { x: 60, opacity: 0 },
+        { x: 0, y: isDesktop ? -68 : 0, opacity: 1, duration: 1.1, ease: 'power4.out' },
+        '<'
+      )
+      .fromTo(roleRef.current,
+        { y: 14, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8 },
+        '-=0.5'
+      )
+      .fromTo(btnsRef.current!.children,
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'back.out(1.4)' },
+        '-=0.45'
+      )
+      .fromTo(scrollRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.8 },
+        '-=0.2'
+      );
 
-      masterTl = gsap.timeline({ defaults: { ease: "power3.out" } });
-
-      masterTl.to(imageRef.current, {
-        opacity: 0.8,
-        scale: 1,
-        duration: 1.8,
-        ease: "power2.out"
-      })
-      .to(locationRef.current, {
-        y: 0, opacity: 1, duration: 1.2, ease: "power3.out"
-      }, "-=1.2")
-      .to(titleRef.current.children, {
-        y: 0, opacity: 1, duration: 1.6,
-        stagger: { amount: 0.3, ease: "power2.out" },
-        ease: "power4.out"
-      }, "-=0.6")
-      .to(subtitleRef.current, {
-        y: 0, opacity: 1, duration: 1.2, ease: "power3.out"
-      }, "-=0.8")
-      .to(introRef.current, {
-        y: 0, opacity: 1, duration: 1.2, ease: "power3.out"
-      }, "-=1.0")
-      .to(buttonsRef.current.children, {
-        y: 0, opacity: 1, duration: 0.9,
-        stagger: 0.12,
-        ease: "back.out(1.7)"
-      }, "-=0.8")
-      .to(scrollRef.current, {
-        y: 0, opacity: 1, duration: 1, ease: "back.out(2)"
-      }, "-=0.5");
-
-      gsap.to(imageRef.current, {
-        yPercent: 20, ease: "none",
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "top top", end: "bottom top", scrub: 1.2
-        }
+    // Ticker infinite scroll
+    if (tickerRef.current) {
+      gsap.to(tickerRef.current, {
+        x: '-50%',
+        duration: 22,
+        ease: 'none',
+        repeat: -1,
       });
+    }
 
-      gsap.to(titleRef.current, {
-        y: -30, ease: "none",
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "top top", end: "bottom top", scrub: 1.5
-        }
-      });
-    };
-
-    const animationTimer = setTimeout(startAnimations, 200);
+    // Parallax on photo
+    gsap.to(photoRef.current, {
+      yPercent: 8, ease: 'none',
+      scrollTrigger: {
+        trigger: heroRef.current,
+        start: 'top top', end: 'bottom top', scrub: 1.2,
+      }
+    });
 
     return () => {
-      clearTimeout(animationTimer);
-      if (masterTl) masterTl.kill();
+      tl.kill();
       ScrollTrigger.getAll().forEach(t => t.kill());
     };
   }, [isLoadingComplete]);
@@ -99,142 +101,133 @@ export default function Hero() {
     <section
       id="hero"
       ref={heroRef}
-      className="relative min-h-screen w-full overflow-hidden bg-[#0a0a0a] text-white"
+      className="relative min-h-screen w-full overflow-hidden bg-[#0a0a0a] text-white flex flex-col"
     >
-      {/* Background image with parallax */}
-      <div
-        ref={imageRef}
-        className="absolute inset-0 z-0 opacity-0"
-        style={{ transform: 'scale(1.1)' }}
-      >
-        <div className="relative h-full w-full">
-          <Image
-            src="/images/hero-erik.png"
-            alt="Logistics Operations"
-            fill
-            priority
-            quality={95}
-            className="object-cover object-center"
-          />
-          {/* Multi-layer gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent" />
+      {/* ── BACKGROUND ── */}
+      <div className="pointer-events-none absolute inset-0 z-0">
+        {/* warm glow centered */}
+        <div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[52%] w-[650px] h-[650px] rounded-full opacity-[0.12]"
+          style={{ background: 'radial-gradient(circle, #b8845a 0%, transparent 68%)' }}
+        />
+        {/* green tint top-left */}
+        <div
+          className="absolute -top-40 -left-40 w-[480px] h-[480px] rounded-full opacity-[0.07]"
+          style={{ background: 'radial-gradient(circle, #5F6F64 0%, transparent 70%)' }}
+        />
+        {/* grain */}
+        <div
+          className="absolute inset-0 opacity-[0.032]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+            backgroundRepeat: 'repeat',
+            backgroundSize: '128px 128px',
+          }}
+        />
+      </div>
+
+      {/* ── CENTER BLOCK ── */}
+      <div className="relative z-10 flex flex-1 flex-col items-center justify-center gap-3 md:gap-7 px-4 pt-16 md:pt-0">
+
+        {/* ERIK [FOTO] MAJADA */}
+        <div className="flex flex-col items-start w-full max-w-xl md:max-w-7xl md:flex-row md:items-center md:justify-center md:gap-7 lg:gap-10 xl:gap-12">
+
+          <span
+            ref={erikRef}
+            className="w-full self-start text-left text-[clamp(4.5rem,20vw,12rem)] md:w-auto md:text-[clamp(3.8rem,9.5vw,12rem)] font-bold leading-none tracking-[-0.04em] text-white opacity-0 select-none"
+          >
+            Erik
+          </span>
+
+          {/* PHOTO CARD — below both names on mobile */}
+          <div ref={photoRef} className="order-3 md:order-none relative shrink-0 opacity-0">
+            {/* glow ring */}
+            <div
+              className="absolute -inset-[3px] rounded-[22px] opacity-25 blur-sm"
+              style={{ background: 'linear-gradient(160deg, #b8845a 0%, #5F6F64 100%)' }}
+            />
+            <div className="relative w-[150px] h-[200px] sm:w-[165px] sm:h-[220px] md:w-[255px] md:h-[342px] lg:w-[300px] lg:h-[402px] xl:w-[345px] xl:h-[462px] overflow-hidden rounded-[20px] border border-white/10">
+              <Image
+                src="/images/hero.png"
+                alt="Erik Majada"
+                fill
+                priority
+                quality={95}
+                className="object-cover object-top"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
+            </div>
+          </div>
+
+          {/* MAJADA — right-aligned, appears second on mobile */}
+          <span
+            ref={majadaRef}
+            className="order-2 md:order-none w-full self-end text-right text-[clamp(4.5rem,20vw,12rem)] md:w-auto md:text-[clamp(3.8rem,9.5vw,12rem)] font-bold leading-none tracking-[-0.04em] text-white opacity-0 select-none"
+          >
+            Majada
+          </span>
+        </div>
+
+        {/* ROLE */}
+        <p
+          ref={roleRef}
+          className="text-xs md:text-sm font-medium uppercase tracking-[0.22em] text-white/42 opacity-0 mt-4 md:mt-8"
+        >
+          Logistics Operations Leader
+        </p>
+
+        {/* BUTTONS */}
+        <div ref={btnsRef} className="flex flex-wrap items-center justify-center gap-2 md:gap-3 mt-3 md:mt-4">
+          <a
+            href="/cv-erik-majada.pdf"
+            download
+            className="flex items-center gap-1.5 rounded-full bg-white px-5 h-[40px] md:h-[53px] md:px-7 text-xs md:text-sm font-semibold text-[#0a0a0a] leading-none transition-all duration-300 hover:bg-white/92 hover:scale-[1.03] hover:shadow-xl hover:shadow-white/10 opacity-0"
+          >
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            Download CV
+          </a>
+
+          <a
+            href="https://linkedin.com/in/erik-majada"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-5 h-[40px] md:h-[53px] md:px-7 text-xs md:text-sm font-medium text-white/80 leading-none backdrop-blur-sm transition-all duration-300 hover:bg-white/12 hover:border-white/28 hover:scale-[1.03] opacity-0"
+          >
+            <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+            LinkedIn
+          </a>
+
+          <button
+            onClick={scrollToContact}
+            className="group flex items-center gap-1.5 rounded-full border border-white/15 px-5 h-[40px] md:h-[53px] md:px-7 text-xs md:text-sm font-medium text-white/80 leading-none transition-all duration-300 hover:bg-white/8 hover:border-white/28 hover:scale-[1.03] opacity-0 cursor-pointer"
+          >
+            Contact Me
+            <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+          </button>
         </div>
       </div>
 
-      {/* Decorative elements */}
-      <div className="absolute top-1/4 right-10 w-px h-32 bg-gradient-to-b from-transparent via-white/20 to-transparent z-10" />
-      <div className="absolute bottom-1/3 left-10 w-px h-20 bg-gradient-to-b from-transparent via-white/15 to-transparent z-10" />
+      {/* SCROLL HINT — pegado al fondo antes del ticker */}
+      <div ref={scrollRef} className="relative z-10 flex items-center justify-center gap-3 opacity-0 pt-2 pb-6 md:pt-3 md:pb-8">
+        <div className="w-px h-5 bg-white/18 animate-pulse" />
+        <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/22">Scroll</span>
+      </div>
 
-      {/* Main content */}
-      <div className="relative z-10 flex min-h-screen flex-col justify-between px-0 pt-40 pb-20">
-        {/* Top bar */}
-        <div ref={contentRef} className="mx-auto w-full max-w-7xl px-6 md:px-12 lg:px-20 flex items-center justify-between">
-          <p
-            ref={locationRef}
-            className="text-sm font-light text-white/70 uppercase tracking-widest opacity-0"
-            style={{ transform: 'translateY(-30px)' }}
-          >
-            Barcelona, Spain · DHL eCommerce
-          </p>
-        </div>
-
-        {/* Title block */}
-        <div className="relative mt-auto mb-10 flex flex-col w-full">
-          <div className="mx-auto w-full max-w-7xl">
-            <div ref={titleRef} className="flex flex-wrap px-6 md:px-12 lg:px-20">
-              <h1
-                className="text-5xl font-bold leading-[0.9] md:text-7xl lg:text-[110px] xl:text-[148px] tracking-[-0.03em] text-white opacity-0"
-                style={{ transform: 'translateY(150px)', transformOrigin: 'bottom left' }}
-              >
-                Erik
-              </h1>
-              <h1
-                className="text-5xl font-bold leading-[0.9] md:text-7xl lg:text-[110px] xl:text-[148px] tracking-[-0.03em] text-white ml-4 opacity-0"
-                style={{ transform: 'translateY(150px)', transformOrigin: 'bottom left' }}
-              >
-                Majada
-              </h1>
-            </div>
-          </div>
-
-          {/* Subtitle + intro + buttons */}
-          <div className="mx-auto w-full max-w-7xl px-6 md:px-12 lg:px-20 mt-8">
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
-              {/* Left: role + intro */}
-              <div className="flex flex-col gap-4 max-w-xl">
-                <p
-                  ref={subtitleRef}
-                  className="text-xl md:text-2xl font-light text-white/90 opacity-0"
-                  style={{ transform: 'translateY(40px)' }}
-                >
-                  Logistics Operations Leader
-                </p>
-                <p
-                  ref={introRef}
-                  className="text-sm md:text-base font-light text-white/60 leading-relaxed opacity-0"
-                  style={{ transform: 'translateY(40px)' }}
-                >
-                  9+ years leading high-volume logistics operations at DHL eCommerce Spain.
-                </p>
-              </div>
-
-              {/* Right: CTA buttons */}
-              <div
-                ref={buttonsRef}
-                className="flex flex-wrap gap-3"
-              >
-                {/* Download CV */}
-                <a
-                  href="/cv-erik-majada.pdf"
-                  download
-                  className="group flex items-center gap-2 px-6 py-3 bg-white text-[#1a1a1a] rounded-full text-sm font-semibold hover:bg-white/90 transition-all duration-300 opacity-0 hover:scale-105 hover:shadow-lg hover:shadow-white/20"
-                  style={{ transform: 'translateY(40px)' }}
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                  </svg>
-                  Download CV
-                </a>
-
-                {/* LinkedIn */}
-                <a
-                  href="https://linkedin.com/in/erik-majada"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-full text-sm font-medium hover:bg-white/20 transition-all duration-300 opacity-0 hover:scale-105"
-                  style={{ transform: 'translateY(40px)' }}
-                >
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                  </svg>
-                  LinkedIn
-                </a>
-
-                {/* Contact Me */}
-                <button
-                  onClick={scrollToContact}
-                  className="group flex items-center gap-2 px-6 py-3 border border-white/30 text-white rounded-full text-sm font-medium hover:bg-white/10 transition-all duration-300 opacity-0 hover:scale-105 cursor-pointer"
-                  style={{ transform: 'translateY(40px)' }}
-                >
-                  Contact Me
-                  <span className="transform transition-transform duration-300 group-hover:translate-x-1">→</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div
-          ref={scrollRef}
-          className="absolute bottom-10 left-6 md:left-12 lg:left-20 flex items-center space-x-3 opacity-0"
-          style={{ transform: 'translateY(30px)' }}
-        >
-          <div className="flex flex-col gap-1 items-center">
-            <div className="w-px h-8 bg-white/40 animate-pulse" />
-          </div>
-          <span className="text-xs text-white/50 uppercase tracking-widest">Scroll</span>
+      {/* ── TICKER MARQUEE — bottom ── */}
+      <div className="relative z-10 w-full overflow-hidden border-t border-white/6 py-2 md:py-3">
+        <div ref={tickerRef} className="flex w-max gap-0">
+          {[...tickerItems, ...tickerItems].map((item, i) => (
+            <span key={i} className="flex items-center">
+              <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-white/22 whitespace-nowrap px-7">
+                {item}
+              </span>
+              <span className="text-white/12 text-[8px]">◆</span>
+            </span>
+          ))}
         </div>
       </div>
     </section>

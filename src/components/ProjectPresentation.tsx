@@ -94,8 +94,8 @@ export default function ProjectPresentation({
         );
       case 'development':
         return (
-          <span className="px-4 py-2 bg-blue-100 rounded-full text-sm font-medium text-blue-800 flex items-center space-x-2">
-            <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+          <span className="px-4 py-2 bg-[#5F6F64]/12 rounded-full text-sm font-medium text-[#5F6F64] flex items-center space-x-2">
+            <div className="w-2 h-2 rounded-full bg-[#5F6F64]"></div>
             <span>En desarrollo</span>
           </span>
         );
@@ -129,11 +129,11 @@ export default function ProjectPresentation({
               {getStatusBadge()}
             </div>
             
-            <h1 className="text-5xl md:text-6xl lg:text-8xl font-bold text-[#333333] mb-6 leading-[1.1]">
+            <h1 className="mb-6 text-5xl font-bold leading-[1.08] tracking-normal text-[#333333] md:text-6xl lg:text-8xl">
               {projectName}
             </h1>
             
-            <p className="text-xl md:text-2xl text-[#333333]/80 max-w-3xl mx-auto leading-relaxed">
+            <p className="mx-auto max-w-3xl text-xl leading-[1.55] text-[#333333]/80 md:text-2xl">
               {description}
             </p>
 
@@ -144,7 +144,7 @@ export default function ProjectPresentation({
                   href={liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-3 px-8 py-4 bg-[#3B5BFE] text-white rounded-full hover:bg-[#3B5BFE]/90 transition-all duration-300 group"
+                  className="inline-flex items-center space-x-3 px-8 py-4 bg-[#5F6F64] text-white rounded-full hover:bg-[#5F6F64]/90 transition-all duration-300 group"
                 >
                   <span className="font-medium">Ver proyecto en vivo</span>
                   <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
@@ -170,10 +170,10 @@ export default function ProjectPresentation({
             <div className="project-info lg:col-span-2">
               <div className="project-description bg-white rounded-2xl p-8 shadow-lg border border-[#333333]/10">
                 <div className="flex items-center space-x-2 mb-6">
-                  <Code className="w-6 h-6 text-[#3B5BFE]" />
+                  <Code className="w-6 h-6 text-[#5F6F64]" />
                   <h2 className="text-2xl font-bold text-[#333333]">Sobre el proyecto</h2>
                 </div>
-                <p className="text-[#333333]/80 text-lg leading-relaxed mb-8">
+                <p className="mb-8 text-lg leading-[1.75] text-[#333333]/80">
                   {longDescription}
                 </p>
                 
@@ -183,7 +183,7 @@ export default function ProjectPresentation({
                     {technologies.map((tech, index) => (
                       <span
                         key={index}
-                        className="px-3 py-1 text-sm rounded-full bg-[#3B5BFE]/10 text-[#3B5BFE] font-medium hover:bg-[#3B5BFE]/20 transition-colors duration-300"
+                        className="px-3 py-1 text-sm rounded-full bg-[#5F6F64]/10 text-[#5F6F64] font-medium hover:bg-[#5F6F64]/20 transition-colors duration-300"
                       >
                         {tech}
                       </span>
@@ -196,8 +196,8 @@ export default function ProjectPresentation({
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {features.map((feature, index) => (
                       <div key={index} className="flex items-start space-x-3">
-                        <div className="w-2 h-2 rounded-full bg-[#3B5BFE] mt-2 flex-shrink-0"></div>
-                        <span className="text-[#333333]/80">{feature}</span>
+                        <div className="w-2 h-2 rounded-full bg-[#5F6F64] mt-2 flex-shrink-0"></div>
+                        <span className="leading-relaxed text-[#333333]/80">{feature}</span>
                       </div>
                     ))}
                   </div>
@@ -209,7 +209,7 @@ export default function ProjectPresentation({
             <div className="project-details space-y-6">
               <div className="bg-white rounded-xl p-6 shadow-lg border border-[#333333]/10">
                 <div className="flex items-center space-x-2 mb-4">
-                  <Calendar className="w-5 h-5 text-[#3B5BFE]" />
+                  <Calendar className="w-5 h-5 text-[#5F6F64]" />
                   <h3 className="font-semibold text-[#333333]">Detalles del proyecto</h3>
                 </div>
                 <div className="space-y-4">
@@ -269,7 +269,7 @@ export default function ProjectPresentation({
                 href={liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center space-x-3 px-6 py-3 bg-[#3B5BFE] text-white rounded-full hover:bg-[#3B5BFE]/90 transition-all duration-300 group"
+                className="inline-flex items-center space-x-3 px-6 py-3 bg-[#5F6F64] text-white rounded-full hover:bg-[#5F6F64]/90 transition-all duration-300 group"
               >
                 <span className="font-medium">Visitar sitio web</span>
                 <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
@@ -292,7 +292,7 @@ export default function ProjectPresentation({
       </section>
 
       {/* Decorative elements */}
-      <div className="fixed top-20 left-20 w-32 h-32 bg-[#3B5BFE]/5 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="fixed top-20 left-20 w-32 h-32 bg-[#5F6F64]/5 rounded-full blur-3xl pointer-events-none"></div>
       <div className="fixed bottom-20 right-20 w-48 h-48 bg-amber-200/20 rounded-full blur-3xl pointer-events-none"></div>
     </div>
   );

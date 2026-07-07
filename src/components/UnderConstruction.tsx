@@ -81,11 +81,11 @@ export default function UnderConstruction({
       <div className="max-w-4xl mx-auto text-center">
         {/* Header */}
         <div className="construction-header mb-12">
-          <div ref={iconRef} className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-[#3B5BFE] mb-8 pulse-element">
+          <div ref={iconRef} className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-[#5F6F64] mb-8 pulse-element">
             <Wrench className="w-12 h-12 text-white" />
           </div>
           
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#333333] mb-4">
+          <h1 className="mb-4 text-5xl font-bold leading-[1.08] tracking-normal text-[#333333] md:text-6xl lg:text-7xl">
             {projectName}
           </h1>
           
@@ -102,23 +102,23 @@ export default function UnderConstruction({
 
         {/* Content */}
         <div className="construction-content mb-12">
-          <p className="text-xl md:text-2xl text-[#333333]/80 mb-8 leading-relaxed">
+          <p className="mb-8 text-xl leading-[1.6] text-[#333333]/80 md:text-2xl">
             {description}
           </p>
           
           <div className="bg-white rounded-2xl p-8 shadow-lg border border-[#333333]/10">
             <div className="flex items-center justify-center space-x-2 mb-6">
-              <Code className="w-6 h-6 text-[#3B5BFE]" />
+              <Code className="w-6 h-6 text-[#5F6F64]" />
               <h3 className="text-xl font-bold text-[#333333]">Desarrollo en progreso</h3>
             </div>
             
-            <p className="text-[#333333]/70 mb-6">
+            <p className="mb-6 leading-[1.75] text-[#333333]/70">
               Actualmente estoy trabajando en este proyecto con mucha dedicación. 
               Pronto estará disponible con todas sus funcionalidades.
             </p>
             
             <div className="text-center">
-              <span className="inline-flex items-center space-x-2 px-6 py-3 bg-[#3B5BFE]/10 rounded-full text-[#3B5BFE] font-medium">
+              <span className="inline-flex items-center space-x-2 px-6 py-3 bg-[#5F6F64]/10 rounded-full text-[#5F6F64] font-medium">
                 <Clock className="w-4 h-4" />
                 <span>{expectedCompletion}</span>
               </span>
@@ -136,10 +136,10 @@ export default function UnderConstruction({
                   key={index}
                   className="bg-white rounded-xl p-6 shadow-sm border border-[#333333]/10 hover:shadow-md transition-all duration-300"
                 >
-                  <div className="w-8 h-8 rounded-full bg-[#3B5BFE]/10 flex items-center justify-center mb-3">
-                    <div className="w-2 h-2 rounded-full bg-[#3B5BFE]"></div>
+                  <div className="w-8 h-8 rounded-full bg-[#5F6F64]/10 flex items-center justify-center mb-3">
+                    <div className="w-2 h-2 rounded-full bg-[#5F6F64]"></div>
                   </div>
-                  <p className="text-[#333333]/80 text-sm">{feature}</p>
+                  <p className="text-sm leading-relaxed text-[#333333]/80">{feature}</p>
                 </div>
               ))}
             </div>
@@ -158,7 +158,7 @@ export default function UnderConstruction({
         </div>
 
         {/* Decorative elements */}
-        <div className="absolute top-20 left-20 w-32 h-32 bg-[#3B5BFE]/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-20 left-20 w-32 h-32 bg-[#5F6F64]/5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 right-20 w-48 h-48 bg-amber-200/20 rounded-full blur-3xl"></div>
       </div>
     </div>
