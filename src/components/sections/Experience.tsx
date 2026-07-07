@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import Image from 'next/image';
+
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion } from 'framer-motion';
@@ -131,7 +131,7 @@ export default function Experience() {
             </span>
           </div>
 
-          {groups.map((group, i) => (
+          {groups.map((group) => (
             <motion.div
               key={group.index}
               className="exp-row group border-t border-[#333]/10 last:border-b last:border-[#333]/10"
@@ -188,7 +188,7 @@ export default function Experience() {
                 className="h-px bg-[#5F6F64] origin-left"
                 variants={{ hovered: { scaleX: 1 } }}
                 initial={{ scaleX: 0 }}
-                transition={{ duration: 0.4, ease: 'power3.out' as any }}
+                transition={{ duration: 0.4, ease: 'easeOut' }}
               />
             </motion.div>
           ))}
