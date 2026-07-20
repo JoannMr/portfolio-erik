@@ -60,9 +60,9 @@ export default function Hero() {
         { y: 0, opacity: 1, duration: 0.8 },
         isMobile ? '-=0.25' : '-=0.5'
       )
-      .fromTo(btnsRef.current!.children,
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: isMobile ? 0.8 : 0.6, stagger: isMobile ? 0.16 : 0.1, ease: 'back.out(1.4)' },
+      .fromTo(btnsRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: isMobile ? 0.9 : 0.75, ease: 'power2.out' },
         isMobile ? '-=0.2' : '-=0.45'
       )
       .fromTo(scrollRef.current,
@@ -177,11 +177,11 @@ export default function Hero() {
         </p>
 
         {/* BUTTONS */}
-        <div ref={btnsRef} className="flex flex-wrap items-center justify-center gap-2 md:gap-3 mt-3 md:mt-4">
+        <div ref={btnsRef} className="flex flex-wrap items-center justify-center gap-2 opacity-0 md:gap-3 md:mt-4 mt-3">
           <a
             href="/cv-erik-majada.pdf"
             download
-            className="flex items-center gap-1.5 rounded-full bg-white px-5 h-[40px] md:h-[53px] md:px-7 text-xs md:text-sm font-semibold text-[#0a0a0a] leading-none transition-all duration-300 hover:bg-white/92 hover:scale-[1.03] hover:shadow-xl hover:shadow-white/10 opacity-0"
+            className="flex items-center gap-1.5 rounded-full bg-white px-5 h-[40px] md:h-[53px] md:px-7 text-xs md:text-sm font-semibold text-[#0a0a0a] leading-none transition-all duration-300 hover:bg-white/92 hover:scale-[1.03] hover:shadow-xl hover:shadow-white/10"
           >
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -193,7 +193,7 @@ export default function Hero() {
             href="https://linkedin.com/in/erik-majada"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-5 h-[40px] md:h-[53px] md:px-7 text-xs md:text-sm font-medium text-white/80 leading-none backdrop-blur-sm transition-all duration-300 hover:bg-white/12 hover:border-white/28 hover:scale-[1.03] opacity-0"
+            className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-5 h-[40px] md:h-[53px] md:px-7 text-xs md:text-sm font-medium text-white/80 leading-none backdrop-blur-sm transition-all duration-300 hover:bg-white/12 hover:border-white/28 hover:scale-[1.03]"
           >
             <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
               <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
@@ -203,7 +203,7 @@ export default function Hero() {
 
           <button
             onClick={scrollToContact}
-            className="group flex items-center gap-1.5 rounded-full border border-white/15 px-5 h-[40px] md:h-[53px] md:px-7 text-xs md:text-sm font-medium text-white/80 leading-none transition-all duration-300 hover:bg-white/8 hover:border-white/28 hover:scale-[1.03] opacity-0 cursor-pointer"
+            className="group flex items-center gap-1.5 rounded-full border border-white/15 px-5 h-[40px] md:h-[53px] md:px-7 text-xs md:text-sm font-medium text-white/80 leading-none transition-all duration-300 hover:bg-white/8 hover:border-white/28 hover:scale-[1.03] cursor-pointer"
           >
             Contact Me
             <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
