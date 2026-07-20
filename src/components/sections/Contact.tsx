@@ -146,10 +146,20 @@ export default function Contact() {
                   index % 2 === 0 ? 'sm:border-r sm:border-r-[#333]/10' : ''
                 }`}
               >
-                <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center justify-between gap-4 [&>span]:hidden">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#1a1a1a] text-white transition-all duration-300 ease-out group-hover:scale-110 group-hover:bg-[#333333]">
                     {link.icon}
                   </div>
+                  <svg
+                    aria-hidden="true"
+                    className="h-5 w-5 shrink-0 text-[#333]/25 transition-all duration-300 ease-out group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-[#333]"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M7 17 17 7M9 7h8v8" />
+                  </svg>
                   <span className="shrink-0 text-lg text-[#333]/25 transition-all duration-300 ease-out group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-[#333]">↗</span>
                 </div>
 

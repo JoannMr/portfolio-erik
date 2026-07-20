@@ -38,6 +38,7 @@ export default function Hero() {
   useEffect(() => {
     if (!isLoadingComplete) return;
 
+    const isMobile = window.innerWidth < 640;
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
     tl
       .fromTo(photoRef.current,
@@ -47,7 +48,7 @@ export default function Hero() {
       .fromTo(erikRef.current,
         { x: -60, opacity: 0 },
         { x: 0, opacity: 1, duration: 1.1, ease: 'power4.out' },
-        '-=1.3'
+        isMobile ? '-=0.65' : '-=1.3'
       )
       .fromTo(majadaRef.current,
         { x: 60, opacity: 0 },
@@ -57,12 +58,12 @@ export default function Hero() {
       .fromTo(roleRef.current,
         { y: 14, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.8 },
-        '-=0.5'
+        isMobile ? '-=0.25' : '-=0.5'
       )
       .fromTo(btnsRef.current!.children,
         { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'back.out(1.4)' },
-        '-=0.45'
+        { y: 0, opacity: 1, duration: isMobile ? 0.8 : 0.6, stagger: isMobile ? 0.16 : 0.1, ease: 'back.out(1.4)' },
+        isMobile ? '-=0.2' : '-=0.45'
       )
       .fromTo(scrollRef.current,
         { opacity: 0 },
