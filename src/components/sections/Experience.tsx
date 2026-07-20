@@ -116,7 +116,7 @@ export default function Experience() {
             <div className="h-6 w-px bg-[#333]/12" />
             <div>
               <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-[#333]/38 mb-1">Since</p>
-              <p className="text-sm font-semibold text-[#1a1a1a]/70">2018 — Present</p>
+              <p className="text-sm font-semibold text-[#1a1a1a]/70">2018 — 2026</p>
             </div>
           </div>
         </div>

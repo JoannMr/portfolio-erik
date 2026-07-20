@@ -39,8 +39,6 @@ export default function Hero() {
     if (!isLoadingComplete) return;
 
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    const isDesktop = window.innerWidth >= 768;
-
     tl
       .fromTo(photoRef.current,
         { y: 40, opacity: 0, scale: 1.06 },
@@ -48,12 +46,12 @@ export default function Hero() {
       )
       .fromTo(erikRef.current,
         { x: -60, opacity: 0 },
-        { x: 0, y: isDesktop ? 68 : 0, opacity: 1, duration: 1.1, ease: 'power4.out' },
+        { x: 0, opacity: 1, duration: 1.1, ease: 'power4.out' },
         '-=1.3'
       )
       .fromTo(majadaRef.current,
         { x: 60, opacity: 0 },
-        { x: 0, y: isDesktop ? -68 : 0, opacity: 1, duration: 1.1, ease: 'power4.out' },
+        { x: 0, opacity: 1, duration: 1.1, ease: 'power4.out' },
         '<'
       )
       .fromTo(roleRef.current,
@@ -130,30 +128,31 @@ export default function Hero() {
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center gap-3 md:gap-7 px-4 pt-16 md:pt-0">
 
         {/* ERIK [FOTO] MAJADA */}
-        <div className="flex flex-col items-start w-full max-w-xl md:max-w-7xl md:flex-row md:items-center md:justify-center md:gap-7 lg:gap-10 xl:gap-12">
+        <div className="flex w-full max-w-7xl flex-row flex-wrap items-center justify-center gap-x-3 gap-y-5 sm:flex-nowrap sm:gap-4 md:gap-7 lg:gap-10 xl:gap-12">
 
           <span
             ref={erikRef}
-            className="w-full self-start text-left text-[clamp(4.5rem,20vw,12rem)] md:w-auto md:text-[clamp(3.8rem,9.5vw,12rem)] font-bold leading-none tracking-[-0.04em] text-white opacity-0 select-none"
+            className="order-1 w-auto text-[clamp(3.5rem,15vw,5.5rem)] sm:order-none sm:text-[clamp(2.25rem,10vw,4.5rem)] md:text-[clamp(3.8rem,9.5vw,12rem)] font-bold leading-none tracking-[-0.04em] text-white opacity-0 select-none"
           >
             Erik
           </span>
 
           {/* PHOTO CARD — below both names on mobile */}
-          <div ref={photoRef} className="order-3 md:order-none relative shrink-0 opacity-0">
+          <div ref={photoRef} className="relative order-3 flex w-full shrink-0 justify-center opacity-0 sm:order-none sm:w-auto">
             {/* glow ring */}
             <div
-              className="absolute -inset-[3px] rounded-[22px] opacity-25 blur-sm"
+              className="absolute left-1/2 top-1/2 size-[196px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-25 blur-sm sm:size-[181px] md:size-[246px] lg:size-[286px] xl:size-[321px]"
               style={{ background: 'linear-gradient(160deg, #b8845a 0%, #5F6F64 100%)' }}
             />
-            <div className="relative w-[150px] h-[200px] sm:w-[165px] sm:h-[220px] md:w-[255px] md:h-[342px] lg:w-[300px] lg:h-[402px] xl:w-[345px] xl:h-[462px] overflow-hidden rounded-[20px] border border-white/10">
+            <div className="relative size-[190px] sm:size-[175px] md:size-[240px] lg:size-[280px] xl:size-[315px] overflow-hidden rounded-full border border-white/10">
               <Image
                 src="/images/hero.png"
                 alt="Erik Majada"
                 fill
                 priority
                 quality={95}
-                className="object-cover object-top"
+                className="object-cover"
+                style={{ transform: 'translate(20%, 20%) scale(1.85)' }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
             </div>
@@ -162,7 +161,7 @@ export default function Hero() {
           {/* MAJADA — right-aligned, appears second on mobile */}
           <span
             ref={majadaRef}
-            className="order-2 md:order-none w-full self-end text-right text-[clamp(4.5rem,20vw,12rem)] md:w-auto md:text-[clamp(3.8rem,9.5vw,12rem)] font-bold leading-none tracking-[-0.04em] text-white opacity-0 select-none"
+            className="order-2 w-auto text-[clamp(3.5rem,15vw,5.5rem)] sm:order-none sm:text-[clamp(2.25rem,10vw,4.5rem)] md:text-[clamp(3.8rem,9.5vw,12rem)] font-bold leading-none tracking-[-0.04em] text-white opacity-0 select-none"
           >
             Majada
           </span>
