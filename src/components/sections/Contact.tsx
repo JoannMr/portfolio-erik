@@ -8,9 +8,9 @@ const contactLinks = [
     id: 'cv',
     label: 'CV',
     sub: 'PDF - Erik Majada',
-    href: '/cv-erik-majada.pdf',
-    download: true,
-    external: false,
+    href: '/pdf/cv-erik-majada.pdf',
+    download: false,
+    external: true,
     icon: (
       <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -20,8 +20,8 @@ const contactLinks = [
   {
     id: 'linkedin',
     label: 'LinkedIn',
-    sub: 'linkedin.com/in/erik-majada',
-    href: 'https://linkedin.com/in/erik-majada',
+    sub: 'linkedin.com/in/erik-majada-067511237',
+    href: 'https://www.linkedin.com/in/erik-majada-067511237/',
     external: true,
     download: false,
     icon: (
@@ -33,8 +33,8 @@ const contactLinks = [
   {
     id: 'mail',
     label: 'Mail',
-    sub: 'erik.majada@gmail.com',
-    href: 'mailto:erik.majada@gmail.com',
+    sub: 'erik.majada4@gmail.com',
+    href: 'mailto:erik.majada4@gmail.com',
     external: false,
     download: false,
     icon: (
@@ -46,8 +46,8 @@ const contactLinks = [
   {
     id: 'whatsapp',
     label: 'WhatsApp',
-    sub: 'Direct message',
-    href: 'https://wa.me/34600000000',
+    sub: '+34 610 200 204',
+    href: 'https://wa.me/34610200204',
     external: true,
     download: false,
     icon: (

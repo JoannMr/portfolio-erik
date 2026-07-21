@@ -147,13 +147,13 @@ export default function Hero() {
             />
             <div className="relative size-[190px] sm:size-[175px] md:size-[240px] lg:size-[280px] xl:size-[315px] overflow-hidden rounded-full border border-white/10">
               <Image
-                src="/images/hero.png"
+                src="/images/hero.jpeg"
                 alt="Erik Majada"
                 fill
                 priority
                 quality={95}
                 className="object-cover"
-                style={{ transform: 'translate(20%, 20%) scale(1.85)' }}
+                style={{ transform: 'translate(5%, 22%) scale(1.50)' }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
             </div>
@@ -179,7 +179,7 @@ export default function Hero() {
         {/* BUTTONS */}
         <div ref={btnsRef} className="flex flex-wrap items-center justify-center gap-2 opacity-0 md:gap-3 md:mt-4 mt-3">
           <a
-            href="/cv-erik-majada.pdf"
+            href="/pdf/cv-erik-majada.pdf"
             download
             className="flex items-center gap-1.5 rounded-full bg-white px-5 h-[40px] md:h-[53px] md:px-7 text-xs md:text-sm font-semibold text-[#0a0a0a] leading-none transition-all duration-300 hover:bg-white/92 hover:scale-[1.03] hover:shadow-xl hover:shadow-white/10"
           >
@@ -190,7 +190,7 @@ export default function Hero() {
           </a>
 
           <a
-            href="https://linkedin.com/in/erik-majada"
+            href="https://www.linkedin.com/in/erik-majada-067511237/"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-5 h-[40px] md:h-[53px] md:px-7 text-xs md:text-sm font-medium text-white/80 leading-none backdrop-blur-sm transition-all duration-300 hover:bg-white/12 hover:border-white/28 hover:scale-[1.03]"

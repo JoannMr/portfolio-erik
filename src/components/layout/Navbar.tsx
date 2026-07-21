@@ -54,7 +54,7 @@ export default function Navbar() {
 
   // Función para Gmail Compose
   const handleGmailCompose = () => {
-    const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=erik.majada@gmail.com&su=${encodeURIComponent('Hello Erik - Contact from your Portfolio')}&body=${encodeURIComponent('Hello Erik,\n\nI am reaching out to you from your portfolio.\n\n[Write your message here]\n\nBest regards,')}`;
+    const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=erik.majada4@gmail.com&su=${encodeURIComponent('Hello Erik - Contact from your Portfolio')}&body=${encodeURIComponent('Hello Erik,\n\nI am reaching out to you from your portfolio.\n\n[Write your message here]\n\nBest regards,')}`;
     window.open(gmailComposeUrl, '_blank');
     setMenuOpen(false);
   };
@@ -297,7 +297,7 @@ export default function Navbar() {
                         onClick={handleGmailCompose}
                         className="group relative cursor-pointer text-left text-white/80 transition-all duration-300 hover:scale-[1.02] hover:text-white"
                       >
-                        <span className="relative z-10">erik.majada@gmail.com</span>
+                        <span className="relative z-10">erik.majada4@gmail.com</span>
                         
                         {/* Línea animada debajo */}
                         <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-white/60 group-hover:w-full transition-all duration-300"></div>
@@ -318,7 +318,7 @@ export default function Navbar() {
                       </h4>
                       <div className="space-y-2">
                         <Link 
-                          href="https://linkedin.com/in/erik-majada"
+                          href="https://www.linkedin.com/in/erik-majada-067511237/"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="block text-white/80 hover:text-white transition-colors duration-300"
